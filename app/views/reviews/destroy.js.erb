@@ -1,0 +1,11 @@
+swal.fire({
+  title: "Deleted!",
+  text: "Your review has been deleted successfully.",
+  icon: "success",
+  confirmButtonText: "Okay",
+}).then(() => {
+  const reviewElement = document.querySelector('#review_<%= @review.id %>');
+  if (reviewElement) {
+    reviewElement.remove();
+  }
+});

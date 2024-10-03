@@ -3,7 +3,7 @@
 <head>
   <title><%= content_for(:title) || "Rails Awesome Garage" %></title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -11,29 +11,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
-
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="<%= asset_path('ExecutiveCar_Black_icon-icons.com_54904.ico') %>">
   <link rel="icon" type="image/x-icon" href="<%= asset_path('ExecutiveCar_Black_icon-icons.com_54904.ico') %>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link href="assets/application.tailwind.css" rel="stylesheet">
-
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <%= javascript_importmap_tags %>
+  <link href="/assets/application.tailwind.css" rel="stylesheet">
+   <%= javascript_importmap_tags %> <!-- Importmap should go here if used -->
+ <script type="module" src="<%= asset_path 'application.js' %>"></script>
 
+  <!-- Load SweetAlert2 before your custom scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
- <body>
+<body>
 <nav class="bg-gray-800 shadow-md py-4 relative">
   <div class="container mx-auto flex justify-between items-center relative">
-    
     <%= link_to image_tag('car-wash.png'), root_path, style: "padding: 10px; border-radius: 50%; width: 60px; height: 60px; filter: invert(1);" %>
-
     <div class="absolute left-1/2 transform -translate-x-1/2">
       <span class="text-white sm:text-xl md:text-3xl lg:text-5xl font-bold">Your Awesome Garage</span>
     </div>
-
     <ul class="flex space-x-4">
       <li><%= link_to 'Cars', cars_path, class: 'text-white' %></li>
       <li><%= link_to 'Favourites', favourites_path, class: 'text-white' %></li>
@@ -41,14 +39,11 @@
   </div>
 </nav>
 
+<div class="content">
+  <%= yield %> 
+</div>
 
-  
-  <div class="content">
-    <%= yield %> 
-  </div>
-
-  <%= render 'layouts/footer' %>
-  
+<%= render 'layouts/footer' %>
 </body>
 </html>
 

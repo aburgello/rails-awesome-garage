@@ -1,0 +1,29 @@
+<% if @review.persisted? %>
+  swal.fire({
+    title: "Success!",
+    text: "Your review has been added successfully.",
+    icon: "success",
+    confirmButtonText: "Okay",
+  }).then(() => {
+    // Optionally, you can reload the page or do something else after the alert
+    location.reload();
+  });
+
+  // Append the new review to the list
+  const reviewsList = document.querySelector('.reviews-list');
+  reviewsList.insertAdjacentHTML('beforeend', `
+    <li id="review_<%= @review.id %>" class="border-b pb-2 mb-2 flex justify-between items-center">
+      <div>
+        <strong class="font-semibold">Rating:</strong> <%= @review.rating %> - <%= @review.comment %>
+      </div>
+      <%= button_to 'Delete', car_review_path(@car, @review), method: :delete, class: "delete-review ml-4 bg-red-500 text-white p-1 rounded hover:bg-red-600" %>
+    </li>
+  `);
+<% else %>
+  swal.fire({
+    title: "Error!",
+    text: "Failed to save review: <%= j @review.errors.full_messages.join(', ') %>",
+    icon: "error",
+    confirmButtonText: "Okay",
+  });
+<% end %>

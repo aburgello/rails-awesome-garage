@@ -743,6 +743,11 @@
   "resolved" "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   "version" "1.0.0"
 
+"sweetalert2@^11.14.1":
+  "integrity" "sha512-xadhfcA4STGMh8nC5zHFFWURhRpWc4zyI3GdMDFH/m3hGWZeQQNWhX9xcG4lI9gZYsi/IlazKbwvvje3juL3Xg=="
+  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.14.1.tgz"
+  "version" "11.14.1"
+
 "tailwindcss@^3.4.13", "tailwindcss@>=3.0.0 || >= 3.0.0-alpha.1 || >= 4.0.0-alpha.20", "tailwindcss@>=3.0.0 || insiders || >=4.0.0-alpha.20", "tailwindcss@>=3.2.0":
   "integrity" "sha512-KqjHOJKogOUt5Bs752ykCeiwvi0fKVkr5oqsFNt/8px/tA8scFPIlkygsf6jXrfCqGHz7VflA6+yytWuM+XhFw=="
   "resolved" "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.13.tgz"
