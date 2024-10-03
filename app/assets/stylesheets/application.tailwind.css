@@ -11,6 +11,7 @@
 }
 
 */
+
 html, body {
   height: 100%;
 }
@@ -18,23 +19,89 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "slnt" 0;
 }
 
+h1 {
+  font-family: "Afacad Flux";
+
+}
+
+p {
+  font-family: "Afacad Flux";
+
+}
 .content {
   flex: 1;
 }
 
 footer {
-  background-color: #f8f9fa;
   padding: 1rem;
   text-align: center;
   position: relative;
 }
+nav {
+  font-family: "Afacad Flux";
 
+}
 nav a {
+  color: white;
   transition: color 0.3s ease;
+  
 }
 
 nav a:hover {
-  color: #4a5568;
+  color: #4571bd;
+  border-bottom: white 3px solid;
+}
+
+
+nav img:hover {
+  scale: 1.05;
+  transition: 0.3s ease;
+
+}
+
+@keyframes slide-in {
+  0% {
+      transform: translateY(20px);
+      opacity: 0;
+  }
+  100% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+#flash-alert {
+  animation: slide-in 0.5s ease forwards;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.card {
+  font-family: "Afacad Flux";
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card img {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border-color: #fbbf24;
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.7); 
+}
+
+
+.card:hover img {
+  transform: scale(1.03);
 }

@@ -15,13 +15,16 @@
   <p class="text-lg text-gray-600 mb-4"><%= @car.owner.nickname %></p>
 
   <h3 class="text-xl font-semibold mt-6">Reviews:</h3>
-  <ul class="space-y-2 mt-4">
-    <% @reviews.each do |review| %>
-      <li class="border-b pb-2 mb-2">
+<ul class="space-y-2 mt-4">
+  <% @car.reviews.each do |review| %>
+    <li class="border-b pb-2 mb-2 flex justify-between items-center">
+      <div>
         <strong class="font-semibold">Rating:</strong> <%= review.rating %> - <%= review.comment %>
-      </li>
-    <% end %>
-  </ul>
+      </div>
+<%= button_to 'Delete', car_review_path(@car, review), method: :delete, data: { confirm: "Are you sure you want to delete this review?", turbo: false }, class: "ml-4 bg-red-500 text-white p-1 rounded hover:bg-red-600" %>
+    </li>
+  <% end %>
+</ul>
 
   <h3 class="text-xl font-semibold mt-6">Favourites:</h3>
   <p class="text-lg text-gray-600 mb-4"><%= @favourites.count %> people have favourited this car.</p>
@@ -29,8 +32,8 @@
   <%= link_to 'Back to Cars List', cars_path, class: 'mt-4 inline-block text-blue-500 hover:text-blue-700' %>
 
   <h3 class="text-xl font-semibold mt-6">Leave a Review</h3>
-
-  <%= form_with model: @review do |form| %>
+  
+  <%= form_with model: [@car, @review] do |form| %>
     <div class="mb-4">
       <%= form.label :comment, class: 'block text-gray-700' %>
       <%= form.text_area :comment, class: 'mt-1 block w-full border rounded-md p-2 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50' %>
@@ -39,18 +42,25 @@
       <%= form.label :rating, class: 'block text-gray-700' %>
       <%= form.number_field :rating, class: 'mt-1 block w-full border rounded-md p-2 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50', min: 1, max: 5 %>
     </div>
-    <%= form.submit 'Submit Review', class: 'bg-blue-500 text-white p-2 rounded hover:bg-blue-600' %>
+    <%= form.submit 'Submit Review', class: 'bg-blue-500 text-white p-2 rounded hover:bg-blue-600 cursor-pointer' %>
   <% end %>
 
   <% if @favourites.empty? %>
     <h3 class="text-xl font-semibold mt-6">Favourite this car</h3>
     <%= form_with url: car_favourites_path(@car), method: :post, local: true do %>
-      <%= submit_tag "Add to Favourites", class: 'mt-2 bg-green-500 text-white p-2 rounded hover:bg-green-600' %>
+      <%= submit_tag "Add to Favourites", class: 'mt-2 bg-green-500 text-white p-2 rounded hover:bg-green-600 cursor-pointer' %>
     <% end %>
   <% else %>
     <h3 class="text-xl font-semibold mt-6">This car is in your favourites</h3>
     <%= form_with url: car_favourite_path(@car, @favourites.first), method: :delete, local: true do %>
-      <%= submit_tag "Remove from Favourites", class: 'mt-2 bg-red-500 text-white p-2 rounded hover:bg-red-600' %>
+      <%= submit_tag "Remove from Favourites", class: 'mt-2 bg-red-500 text-white p-2 rounded hover:bg-red-600 cursor-pointer' %>
     <% end %>
   <% end %>
+
+<% if flash[:notice] %>
+  <div id="flash-alert" class="bg-green-500 text-white p-4 rounded fixed top-4 right-4 z-50">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
 </div>

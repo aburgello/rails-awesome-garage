@@ -6,6 +6,7 @@ class CarsController < ApplicationController
   def show
     @car = Car.find(params[:id])
     @reviews = @car.reviews
-    @favourites = Favourite.where(car_id: @car.id)
+    @review = Review.new
+    @favourites = Favourite.where(car: @car)
   end
 end
