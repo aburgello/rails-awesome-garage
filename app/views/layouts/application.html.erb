@@ -1,23 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= content_for(:title) || "Rails Awesome Garage" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title><%= content_for(:title) || "Rails Awesome Garage" %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= yield :head %>
+  <%= yield :head %>
 
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icon.png" type="image/png">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon.png"> 
 
-  <body>
-    <%= yield %>
-  </body>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="/assets/application.tailwind.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <%= javascript_importmap_tags %>
+</head>
+
+ <body>
+  <nav class="bg-white shadow-md py-4">
+  <div class="container mx-auto flex justify-between items-center">
+    <h1 class="text-xl font-bold">My Garage</h1>
+    <ul class="flex space-x-4">
+      <li><%= link_to 'Cars', cars_path, class: 'hover:text-gray-600' %></li>
+      <li><%= link_to 'Favourites', favourites_path, class: 'hover:text-gray-600' %></li>
+    </ul>
+  </div>
+</nav>
+  
+  <div class="content">
+    <%= yield %> <!-- Main content goes here -->
+  </div>
+
+  <%= render 'layouts/footer' %>
+</body>
 </html>
+
