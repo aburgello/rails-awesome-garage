@@ -105,3 +105,12 @@ nav img:hover {
 .card:hover img {
   transform: scale(1.03);
 }
+
+@media (max-width: 540px) {
+  nav span{
+    display: none;
+  }
+  nav{
+    padding: 0 20px;
+  }
+}
