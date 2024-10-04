@@ -1,15 +1,14 @@
-<div class="container mx-auto p-4 flex">
-  <!-- Left Section: Cars List and Filters -->
-  <div class="w-1/4 p-4"> <!-- Adjust width for left column -->
+<div class="container mx-auto p-4 flex flex-col md:flex-row"> <!-- Change here -->
+  <div class="w-full md:w-1/5 p-4"> <!-- Cars List Section -->
     <h1 class="text-5xl font-bold text-gray-800">Cars List</h1>
-    <p class="text-lg text-gray-400 mb-6 border-b-2 pb-4">Explore your collection of cars</p>
+    <p class="text-lg text-gray-400 mb-4 border-b-2 pb-2">Explore your collection!</p>
 
-    <div class="filters-container"> <!-- Filter Section -->
-      <h2 class="text-2xl font-bold mb-4">Filters</h2>
-      <form action="/cars" method="get"> <!-- Update the action URL accordingly -->
+    <div class="w-full md:w-4/5"> <!-- Filter Section -->
+      <h2 class="text-2xl font-bold mb-2">Filters</h2>
+      <form action="/cars" method="get">
         <div class="mb-4">
           <label class="block text-gray-700">Manufacturer</label>
-            <select name="brand" class="w-full p-2 border border-gray-300 rounded">
+          <select name="brand" class="w-full p-2 border border-gray-300 rounded">
             <option value="">All</option>
             <option value="PORSCHE" <%= "selected" if params[:brand] == "PORSCHE" %>>Porsche</option>
             <option value="LAMBORGHINI" <%= "selected" if params[:brand] == "LAMBORGHINI" %>>Lamborghini</option>
@@ -46,20 +45,17 @@
     </div>
   </div>
 
-  <!-- Right Section: Car Cards -->
-  <div class="w-3/4 p-4"> <!-- Adjust width for right column -->
-    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <% @cars.each do |car| %>
-        <li class="card bg-white shadow rounded-lg p-4 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
-          <a href="/cars/<%= car.id %>">
-            <img src="<%= car.image_url %>" alt="<%= car.brand %> <%= car.model %>" class="w-full h-40 object-cover rounded-t-lg mb-2">
-            <h2 class="text-xl font-semibold"><%= "#{car.brand} #{car.model}" %></h2>
-            <p class="text-gray-500">Year: <%= car.year %></p>
-            <p class="text-gray-500">VIN: <%= car.vin %></p>
-            <p class="text-gray-500">Fuel: <%= car.fuel %></p>
-          </a>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full"> <!-- Added w-full here -->
+    <% @cars.each do |car| %>
+      <li class="card bg-white shadow rounded-lg p-4 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
+        <a href="/cars/<%= car.id %>">
+          <img src="<%= car.image_url %>" alt="<%= car.brand %> <%= car.model %>" class="w-full h-40 object-cover rounded-t-lg mb-2">
+          <h2 class="text-xl font-semibold"><%= "#{car.brand} #{car.model}" %></h2>
+          <p class="text-gray-500">Year: <%= car.year %></p>
+          <p class="text-gray-500">VIN: <%= car.vin %></p>
+          <p class="text-gray-500">Fuel: <%= car.fuel %></p>
+        </a>
+      </li>
+    <% end %>
+  </ul>
 </div>

@@ -173,4 +173,33 @@ nav img:hover {
   nav{
     padding: 0 20px;
   }
+  nav .logo-text{
+    font-size: larger;
+    }
+  .mb-4 {
+    margin-bottom: 5px;
+  }
+
+}
+
+@media (min-width: 768px) {
+  .container {
+      max-width: 1068px;
+  }
+  nav .logo-text{
+    font-size: larger;
+    }
+}
+
+@media (min-width: 1024px) {
+  .container {
+      max-width: 1324px;
+      padding:10px
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+      max-width: 2036px;
+  }
 }
