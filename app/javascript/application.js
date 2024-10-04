@@ -104,16 +104,3 @@ if (flashAlert) {
   }, 3000); // Adjust time as needed (3000ms = 3 seconds)
 }
 
-document.addEventListener("turbo:load", function() {
-    document.querySelectorAll('form[data-remote="true"]').forEach(form => {
-      form.addEventListener('ajax:success', function(event) {
-        console.log('Form submitted successfully!', event.detail);
-      });
-  
-      form.addEventListener('ajax:error', function(event) {
-        console.log('Error submitting form:', event.detail);
-      });
-    });
-  });
-  
-  

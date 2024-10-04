@@ -15,7 +15,7 @@ class FavouritesController < ApplicationController
     @favourite.destroy
 
     respond_to do |format|
-      format.js   # This will look for destroy.js.erb
+      format.js   # This will render destroy.js.erb
     end
   end
 
