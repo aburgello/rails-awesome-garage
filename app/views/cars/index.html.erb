@@ -50,17 +50,17 @@
     </div>
   </div>
 
-  <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full"> <!-- Added w-full here -->
-    <% @cars.each do |car| %>
-      <li class="card bg-white shadow rounded-lg p-4 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
-        <a href="/cars/<%= car.id %>">
-          <img src="<%= car.image_url %>" alt="<%= car.brand %> <%= car.model %>" class="w-full h-40 object-cover rounded-t-lg mb-2">
-          <h2 class="text-xl font-semibold"><%= "#{car.brand} #{car.model}" %></h2>
-          <p class="text-gray-500">Year: <%= car.year %></p>
-          <p class="text-gray-500">VIN: <%= car.vin %></p>
-          <p class="text-gray-500">Fuel: <%= car.fuel %></p>
-        </a>
-      </li>
-    <% end %>
-  </ul>
+<ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+  <% @cars.shuffle.each do |car| %> <!-- Use shuffle to randomize the cars array -->
+    <li class="card bg-white shadow rounded-lg p-4 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
+      <a href="/cars/<%= car.id %>">
+        <img src="<%= car.image_url %>" alt="<%= car.brand %> <%= car.model %>" class="w-full h-40 object-cover rounded-t-lg mb-2">
+        <h2 class="text-xl font-semibold"><%= "#{car.brand} #{car.model}" %></h2>
+        <p class="text-gray-500">Year: <%= car.year %></p>
+        <p class="text-gray-500">VIN: <%= car.vin %></p>
+        <p class="text-gray-500">Fuel: <%= car.fuel %></p>
+      </a>
+    </li>
+  <% end %>
+</ul>
 </div>
