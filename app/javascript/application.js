@@ -5,7 +5,10 @@ import "@rails/ujs";
 
 
 function handleFormSubmission() {
+    if (formListenerAttached) return; // If listeners are already attached, do nothing
     document.querySelectorAll('form').forEach(form => {
+        console.log("Attaching submit listener to form: ", form); // Log the form being processed
+
       form.addEventListener('submit', function(event) {
         event.preventDefault();
         fetch(this.action, {
@@ -35,7 +38,32 @@ function handleFormSubmission() {
         })
         .catch(error => console.error('There was a problem with your fetch operation:', error));
       });
+      document.querySelectorAll('form').forEach(form => {
+        form.removeEventListener('submit', handleFormSubmit);
+        form.addEventListener('submit', handleFormSubmit);
+      });
     });
+  }
+   
+  function handleFormSubmit(event) {
+    event.preventDefault();
+  
+    fetch(this.action, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/javascript',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams(new FormData(this))
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.text();
+    })
+    .then(data => {
+      eval(data);
+    })
+    .catch(error => console.error('There was a problem with your fetch operation:', error));
   }
   
 function handleDeleteReview() {
