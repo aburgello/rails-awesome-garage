@@ -159,6 +159,13 @@ nav img:hover {
   transform: scale(1.03);
 }
 
+#filters-menu {
+  border-bottom: 2px solid rgba(214, 214, 214, 0.616);
+  padding-bottom: 15px;
+  margin-bottom: 20px;  
+  margin-top: -10px;
+}
+
 .filter-section {
   padding: 20px;
   background-color: #f8f9fa;
@@ -178,6 +185,12 @@ nav img:hover {
     }
   .mb-4 {
     margin-bottom: 5px;
+  }
+  #filters-menu {
+    border-bottom: 2px solid rgba(214, 214, 214, 0.616);
+    padding-bottom: 25px;
+    margin-bottom: 25px;  
+    margin-top: -15px;
   }
 
 }
