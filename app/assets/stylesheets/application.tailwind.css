@@ -198,9 +198,7 @@ nav img:hover {
   .container {
       max-width: 1068px;
   }
-  nav .logo-text{
-    font-size: larger;
-    }
+
 }
 
 @media (min-width: 1024px) {
