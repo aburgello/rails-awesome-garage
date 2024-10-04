@@ -22,3 +22,15 @@ const formContainer = document.querySelector('.ajax-favourites-form');
       <%= form.submit "Add to Favourites", class: "mt-2 bg-green-500 text-white p-2 rounded hover:bg-green-600 cursor-pointer" %>
     <% end %>
   `;}
+
+if (typeof formContainerPick == 'undefined'){
+const formContainerPick = document.querySelector('.ajax-favourites-form-pick');
+if (formContainerPick) {
+  formContainerPick.innerHTML = `
+<%= form_with(url: car_favourites_path(@car), method: :post, local: false) do |form| %>
+      <%= form.submit "Add to Favourites", class: "mt-2 bg-green-500 w-full text-white p-2 rounded block text-center hover:bg-green-600 cursor-pointer" %>
+          <% end %>
+
+  `;
+}
+}

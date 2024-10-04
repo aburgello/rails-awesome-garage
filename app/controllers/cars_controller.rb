@@ -25,5 +25,6 @@ class CarsController < ApplicationController
 
   def pick
     @car = Car.order("RANDOM()").first
+    @favourites = Favourite.where(car: @car)
   end
 end
