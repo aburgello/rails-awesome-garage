@@ -17,16 +17,19 @@
   <p class="text-lg text-gray-600 mb-4"><%= @car.owner.nickname %></p>
 
   <h3 class="text-xl font-semibold mt-6">Reviews:</h3>
- <ul class="reviews-list space-y-2 mt-4">
-  <% @car.reviews.each do |review| %>
-  <li id="review_<%= review.id %>" class="border-b pb-2 mb-2 flex justify-between items-center">
-    <div>
-      <strong class="font-semibold">Rating:</strong> <%= review.rating %> - <%= review.comment %>
-    </div>
-    <%= button_to 'Delete', car_review_path(@car, review), method: :delete, class: "ml-4 bg-red-500 text-white p-1 rounded hover:bg-red-600", remote: true %>
-  </li>
-<% end %>
-</ul>
+
+    <ul class="reviews-list space-y-2 mt-4">
+    <% @car.reviews.each do |review| %>
+    <li id="review_<%= review.id %>" class="border-b pb-2 mb-2 flex justify-between items-center">
+        <div>
+        <strong class="font-semibold">Rating:</strong> <%= review.rating %> - <%= review.comment %>
+        </div>
+        <button class="delete-review ml-4 bg-red-500 text-white p-1 rounded hover:bg-red-600" data-review-id="<%= review.id %>" data-review-url="<%= car_review_path(@car, review) %>">
+        Delete
+        </button>
+    </li>
+    <% end %>
+    </ul>
 
 
 

@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
     if @review.save
       Rails.logger.debug "Review saved successfully."
       respond_to do |format|
-        format.js   # This will look for create.js.erb
+        format.js
         format.html { redirect_to @car, notice: "Review was successfully created." }
       end
     else
@@ -21,25 +21,22 @@ class ReviewsController < ApplicationController
 
 
   def destroy
-    @review = Review.find(params[:id]) # Find the review by ID
+    @review = Review.find(params[:id])
 
-    if @review.destroy # Attempt to destroy the review
-      Rails.logger.debug "Review deleted successfully."
+    if @review.destroy
       respond_to do |format|
-        format.js   # This will look for destroy.js.erb
+        format.js
       end
     else
-      Rails.logger.error "Failed to delete review."
       respond_to do |format|
-        format.html { redirect_to cars_path, alert: "Failed to delete the review." } # Handle HTML requests
-        format.js   # Optional, but you might want to handle this case in JavaScript too
+        format.js
       end
     end
   end
   private
 
   def set_car
-    @car = Car.find(params[:car_id])  # This line sets @car based on the car_id parameter
+    @car = Car.find(params[:car_id])
   end
 
   def review_params
