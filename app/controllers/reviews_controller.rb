@@ -8,13 +8,11 @@ class ReviewsController < ApplicationController
       Rails.logger.debug "Review saved successfully."
       respond_to do |format|
         format.js
-        format.html { redirect_to @car, notice: "Review was successfully created." }
       end
     else
       Rails.logger.debug "Review failed to save: #{@review.errors.full_messages.join(', ')}"
       respond_to do |format|
         format.js { render js: "alert('Failed to save review: #{@review.errors.full_messages.join(', ')}');" }
-        format.html { redirect_to @car, alert: "Failed to save review: #{@review.errors.full_messages.join(', ')}" }
       end
     end
   end

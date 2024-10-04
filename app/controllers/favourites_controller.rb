@@ -2,19 +2,20 @@ class FavouritesController < ApplicationController
   def create
     @car = Car.find(params[:car_id])
     Favourite.create(car: @car)
+    Rails.logger.debug "FavouritesController#create called for car #{@car.id}"
 
-    flash[:notice] = "#{@car.brand} #{@car.model} has been added to your favourites! ❤️"
-    redirect_to car_path(@car)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy
     @favourite = Favourite.find(params[:id])
     @car = @favourite.car
     @favourite.destroy
-    if request.referer.include?(favourites_path)
-      redirect_to favourites_path, notice: "#{@car.brand} #{@car.model} has been removed from your favourites."
-    else
-      redirect_to car_path(@car), notice: "Car was removed from favourites."
+
+    respond_to do |format|
+      format.js   # This will look for destroy.js.erb
     end
   end
 

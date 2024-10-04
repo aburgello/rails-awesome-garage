@@ -1,25 +1,29 @@
 <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 m-8">
-  <% @favourites.each do |favourite| %>
-    <li class="relative bg-white shadow rounded-lg p-4 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
-      
-      <!-- X button to remove from favourites -->
-      <%= button_to 'X', car_favourite_path(favourite.car, favourite), 
-          method: :delete, 
-          data: { confirm: "Are you sure you want to remove this car from your favourites?" }, 
-          class: "absolute top-2 right-2 text-red-500 hover:text-red-700 w-14 p-2 bg-white rounded-full shadow" %>
+  <% if @favourites.present? && @favourites.any? %>
+    <% @favourites.each do |favourite| %>
+      <li id="favourite_<%= favourite.id %>" class="relative bg-white shadow rounded-lg p-4 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
+        
+        <!-- X button to remove from favourites -->
+        <%= button_to 'X', car_favourite_path(favourite.car, favourite), 
+    method: :delete, 
+    remote: true,  # Ensure remote: true for AJAX
+    class: "absolute top-2 right-2 text-red-500 hover:text-red-700 w-14 p-2 bg-white rounded-full shadow" %>
 
-      <!-- Car content (image, title, etc.) -->
-      <%= link_to car_path(favourite.car) do %>
-        <% car = favourite.car %>
-        <% if car.image_url.present? %>
-          <img src="<%= car.image_url %>" alt="<%= car.brand %> <%= car.model %>" class="w-full h-40 object-cover rounded-t-lg mb-2">
-        <% else %>
-          <img src="https://via.placeholder.com/300x200" alt="No image available" class="w-full h-40 object-cover rounded-t-lg mb-2">
+        <!-- Car content (image, title, etc.) -->
+        <%= link_to car_path(favourite.car) do %>
+          <% car = favourite.car %>
+          <% if car.image_url.present? %>
+            <img src="<%= car.image_url %>" alt="<%= car.brand %> <%= car.model %>" class="w-full h-40 object-cover rounded-t-lg mb-2">
+          <% else %>
+            <img src="https://via.placeholder.com/300x200" alt="No image available" class="w-full h-40 object-cover rounded-t-lg mb-2">
+          <% end %>
+          <h2 class="text-xl font-semibold"><%= car.brand %> <%= car.model %></h2>
+          <p class="text-gray-500">Year: <%= car.year %></p>
+          <p class="text-gray-500">Fuel: <%= car.fuel %></p>
         <% end %>
-        <h2 class="text-xl font-semibold"><%= car.brand %> <%= car.model %></h2>
-        <p class="text-gray-500">Year: <%= car.year %></p>
-        <p class="text-gray-500">Fuel: <%= car.fuel %></p>
-      <% end %>
-    </li>
+      </li>
+    <% end %>
+  <% else %>
+    <p class="text-lg text-center text-gray-600 m-8 italic">You have no cars in your favourites yet.</p>
   <% end %>
 </ul>

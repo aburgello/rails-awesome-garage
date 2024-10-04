@@ -1,0 +1,34 @@
+<% if controller_name == 'favourites' %>
+  // We're in the favourites index page
+  // Remove the favourite item from the list (remove the card)
+  document.querySelector('#favourite_<%= @favourite.id %>').remove();
+
+  // Optionally show a success alert
+  Swal.fire({
+    title: 'Removed!',
+    text: '<%= @favourite.car.brand %> <%= @favourite.car.model %> has been removed from your favourites.',
+    icon: 'success',
+    confirmButtonText: 'OK'
+  });
+<% else %>
+Swal.fire({
+  title: 'Removed!',
+  text: 'The car has been removed from your favourites.',
+  icon: 'success',
+  confirmButtonText: 'OK'
+});
+
+// Update the button to show "Add to Favourites"
+const formContainer = document.querySelector('.ajax-favourites-form');
+if (formContainer) {
+  formContainer.innerHTML = `
+    <h3 class="text-xl font-semibold mt-6">Favourite this car</h3>
+    <%= form_with url: car_favourites_path(@car), method: :post, local: false, data: { remote: true } do %>
+      <%= submit_tag "Add to Favourites", class: 'mt-2 bg-green-500 text-white p-2 rounded hover:bg-green-600 cursor-pointer' %>
+    <% end %>
+  `;
+}
+
+
+
+<% end %>
