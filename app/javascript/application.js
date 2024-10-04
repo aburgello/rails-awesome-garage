@@ -7,12 +7,20 @@ document.addEventListener("turbo:load", function () {
     console.log("application.js is loaded");
     handleDeleteReview(); // Attach delete review handlers
   });
-  document.querySelectorAll('.h-64').forEach(function(element) {
-    element.addEventListener('click', function(event) {
-        element.classList.toggle('h-64');
-        element.classList.toggle('h-auto');
+  document.addEventListener('turbo:load', function() {
+    document.querySelectorAll('.h-64').forEach(function(element) {
+      element.addEventListener('click', function(event) {
+        if (element.classList.contains('h-64')) {
+          element.classList.remove('h-64');
+          element.classList.add('h-auto');
+        } else {
+          element.classList.remove('h-auto');
+          element.classList.add('h-64');
+        }
+      });
     });
-});
+  });
+  
 
   // This function handles form submissions using fetch API
   function handleFormSubmission() {
