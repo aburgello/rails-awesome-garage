@@ -7,7 +7,13 @@ document.addEventListener("turbo:load", function () {
     console.log("application.js is loaded");
     handleDeleteReview(); // Attach delete review handlers
   });
-  
+  document.querySelectorAll('.h-64').forEach(function(element) {
+    element.addEventListener('click', function(event) {
+        element.classList.toggle('h-64');
+        element.classList.toggle('h-auto');
+    });
+});
+
   // This function handles form submissions using fetch API
   function handleFormSubmission() {
     document.querySelectorAll('form').forEach(form => {

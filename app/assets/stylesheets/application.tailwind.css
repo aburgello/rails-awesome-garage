@@ -172,6 +172,7 @@ nav img:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+
 @media (max-width: 540px) {
   nav span{
     display: none;
@@ -211,6 +212,6 @@ nav img:hover {
 
 @media (min-width: 1536px) {
   .container {
-      max-width: 2036px;
+      max-width: 1536px;
   }
 }
