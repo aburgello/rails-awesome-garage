@@ -28,13 +28,15 @@
 <body>
 <nav class="bg-gray-800 shadow-md py-4 relative">
   <div class="container mx-auto flex justify-between items-center">
-    <div class="flex items-center">
-      <%= link_to image_tag('car-wash.png'), root_path, style: "padding: 10px; border-radius: 50%; width: 60px; height: 60px; filter: invert(1);" %>
-      <%= link_to 'Your Awesome Garage', root_path, class: 'logo-text sm:text-xl md:text-3xl lg:text-5xl font-bold' %>
+      <%= link_to image_tag('car-wash.png'), root_path, style: "margin-left: 15px; border-radius: 50%; width: 60px; filter: invert(1);" %>
+    <div class="flex items-center w-full justify-start lg:justify-center">
+      <%= link_to 'Your Awesome Garage', root_path, class: 'logo-text sm:text-xl md:text-3xl lg:text-5xl font-bold ml-4 lg:ml-0 text-white' %>
     </div>
+
+    <!-- Navbar Links -->
     <ul class="flex space-x-4 mr-6">
-      <li><%= link_to 'Cars', cars_path, class: 'text-white' %></li>
-      <li><%= link_to 'Favourites', favourites_path, class: 'text-white' %></li>
+      <li><%= link_to 'Cars', cars_path, class: 'text-white navbar-link' %></li>
+      <li><%= link_to 'Favourites', favourites_path, class: 'text-white navbar-link' %></li>
     </ul>
   </div>
 </nav>

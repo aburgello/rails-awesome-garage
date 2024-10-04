@@ -50,21 +50,23 @@ nav {
 }
 .navbar {
   display: flex;
-  align-items: center; /* Center vertically */
+  align-items: center;
 }
 
 .logo {
-  width: 60px; /* Set the logo width */
-  height: 60px; /* Set the logo height */
-  filter: invert(1); /* Logo filter */
+  width: 60px;
+  height: 60px;
+  filter: invert(1);
 }
 
 nav .text-white {
   color: white;
   transition: color 0.3s ease;
-  
 }
 
+nav .navbar-link{
+  font-size: larger;
+}
 nav .logo-text{
   color: white;
   margin-left: 15px;
@@ -75,9 +77,13 @@ nav .text-white:hover {
   border-bottom: white 3px solid;
 }
 
-
+nav .logo-text:hover{
+  border-bottom: none;
+  color: white;
+  transition: 0.1s ease;
+}
 nav img:hover {
-  scale: 1.05;
+  scale: 1.16;
   transition: 0.3s ease;
 
 }
