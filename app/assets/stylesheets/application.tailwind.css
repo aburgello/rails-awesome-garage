@@ -181,6 +181,7 @@ nav img:hover {
   }
   nav .logo-text{
     font-size: larger;
+    display: none;
     }
   .mb-4 {
     margin-bottom: 5px;
