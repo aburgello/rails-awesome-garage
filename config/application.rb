@@ -5,6 +5,13 @@ require "rails/all"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+# config/application.rb
+module YourApp
+  class Application < Rails::Application
+    # Add this line to autoload services
+    config.autoload_paths += %W[#{config.root}/app/services]
+  end
+end
 
 module RailsAwesomeGarage
   class Application < Rails::Application

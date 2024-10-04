@@ -1,6 +1,19 @@
 class CarsController < ApplicationController
   def index
     @cars = Car.all
+
+    # Filtering based on parameters
+    if params[:brand].present?
+      @cars = @cars.where(brand: params[:brand])
+    end
+
+    if params[:fuel].present?
+      @cars = @cars.where(fuel: params[:fuel])
+    end
+
+    if params[:year].present?
+      @cars = @cars.where(year: params[:year])
+    end
   end
 
   def show

@@ -125,9 +125,45 @@ nav img:hover {
   box-shadow: 0 0 15px rgba(251, 191, 36, 0.7); 
 }
 
+.filters-container {
+  display: flex;
+  flex-direction: column; /* Stack vertically */
+  gap: 10px; /* Space between elements */
+  width: 300px; /* Set a fixed width for the container */
+}
+
+.filter-input {
+  width: 100%; /* Full width of the container */
+  padding: 10px; /* Padding for better appearance */
+  border: 1px solid #ccc; /* Border styling */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.filter-button {
+  width: 100%; /* Full width of the container */
+  padding: 10px; /* Padding for better appearance */
+  background-color: #007bff; /* Button color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.filter-button:hover {
+  background-color: #002f61; /* Darker shade on hover */
+}
+
 
 .card:hover img {
   transform: scale(1.03);
+}
+
+.filter-section {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 540px) {

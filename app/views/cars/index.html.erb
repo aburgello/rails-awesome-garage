@@ -1,28 +1,72 @@
-<div class="container mx-auto p-4">
-  <h1 class="text-5xl font-bold text-gray-800">
-    Cars List
-  </h1>
-  <p class="text-lg text-gray-400 mb-6 border-b-2 pb-4">
-    Explore your collection of cars
-  </p>
-  
+<div class="container mx-auto p-4 flex">
+  <!-- Left Section: Cars List and Filters -->
+  <div class="w-1/4 p-4"> <!-- Adjust width for left column -->
+    <h1 class="text-5xl font-bold text-gray-800">Cars List</h1>
+    <p class="text-lg text-gray-400 mb-6 border-b-2 pb-4">Explore your collection of cars</p>
 
-<ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-  <% @cars.each do |car| %>
-    <li class="card bg-white shadow rounded-lg p-4 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
-      <%= link_to car_path(car) do %>
-        <% if car.image_url.present? %>
-          <img src="<%= car.image_url %>" alt="<%= car.brand %> <%= car.model %>" class="w-full h-40 object-cover rounded-t-lg mb-2">
-        <% else %>
-          <img src="https://via.placeholder.com/300x200" alt="No image available" class="w-full h-40 object-cover rounded-t-lg mb-2">
-        <% end %>
-        
-        <h2 class="text-xl font-semibold"><%= car.brand %> <%= car.model %></h2>
-        <p class="text-gray-500">Year: <%= car.year %></p>
-        <p class="text-gray-500">Fuel: <%= car.fuel %></p>
+    <div class="filters-container"> <!-- Filter Section -->
+      <h2 class="text-2xl font-bold mb-4">Filters</h2>
+      <form action="/cars" method="get"> <!-- Update the action URL accordingly -->
+        <div class="mb-4">
+          <label class="block text-gray-700">Manufacturer</label>
+          <select name="brand" class="w-full p-2 border border-gray-300 rounded">
+            <option value="">All</option>
+            <option value="PORSCHE">Porsche</option>
+            <option value="LAMBORGHINI">Lamborghini</option>
+            <option value="FERRARI">Ferrari</option>
+            <option value="BMW">BMW</option>
+            <option value="AUDI">Audi</option>
+            <option value="MERCEDES">Mercedes-Benz</option>
+            <!-- Add more brands if needed -->
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700">Fuel Type</label>
+          <select name="fuel" class="w-full p-2 border border-gray-300 rounded">
+            <option value="">All</option>
+            <option value="Gasoline">Gasoline</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Electric">Electric</option>
+            <option value="Hybrid">Hybrid</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700">Year</label>
+          <select name="year" class="w-full p-2 border border-gray-300 rounded">
+            <option value="">All</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+          </select>
+        </div>
+
+        <button type="submit" class="bg-blue-500 text-white p-2 rounded w-full">Filter</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Right Section: Car Cards -->
+  <div class="w-3/4 p-4"> <!-- Adjust width for right column -->
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <% @cars.each do |car| %>
+        <li class="card bg-white shadow rounded-lg p-4 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
+          <a href="/cars/<%= car.id %>">
+            <img src="<%= car.image_url %>" alt="<%= car.brand %> <%= car.model %>" class="w-full h-40 object-cover rounded-t-lg mb-2">
+            <h2 class="text-xl font-semibold"><%= "#{car.brand} #{car.model}" %></h2>
+            <p class="text-gray-500">Year: <%= car.year %></p>
+            <p class="text-gray-500">VIN: <%= car.vin %></p>
+            <p class="text-gray-500">Fuel: <%= car.fuel %></p>
+          </a>
+        </li>
       <% end %>
-    </li>
-  <% end %>
-</ul>
-
+    </ul>
+  </div>
 </div>
