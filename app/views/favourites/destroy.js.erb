@@ -1,29 +1,25 @@
-<% if controller_name == 'favourites' %>
+if (typeof favouriteElement == 'undefined'){
 const favouriteElement = document.querySelector('#favourite_<%= @favourite.id %>');
 if (favouriteElement) {
   favouriteElement.remove();
 }
-  Swal.fire({
-    title: 'Removed!',
-    text: '<%= @favourite.car.brand %> <%= @favourite.car.model %> has been removed from your favourites.',
-    icon: 'success',
-    confirmButtonText: 'OK'
-  });
+console.log("Favourite removed:", favouriteElement);
+};
 
-// Find the favourite item and remove it from the DOM
-const favouriteItem = document.querySelector('#favourite_<%= @favourite.id %>');
-if (favouriteItem) {
-  favouriteItem.remove();
-}
+Swal.fire({
+  title: 'Removed!',
+  text: '<%= @favourite.car.brand %> <%= @favourite.car.model %> has been removed from your favourites.',
+  icon: 'success',
+  confirmButtonText: 'OK'
+});
 
-// Update the button to show "Add to Favourites" in the car page
+if (typeof formContainer == 'undefined'){
 const formContainer = document.querySelector('.ajax-favourites-form');
-if (formContainer) {
   formContainer.innerHTML = ` 
     <h3 class="text-xl font-semibold mt-6">Favourite this car</h3>
-    <%= form_with url: car_favourites_path(@car), method: :post, local: false, data: { remote: true } do %>
-      <%= submit_tag "Add to Favourites", class: 'mt-2 bg-green-500 text-white p-2 rounded hover:bg-green-600 cursor-pointer' %>
-  <% end %>
-  `;
-}
-<% end %>
+    <%= form_with(url: car_favourites_path(@car), method: :post, local: false) do |form| %>
+      <%= form.submit "Add to Favourites", class: "mt-2 bg-green-500 text-white p-2 rounded hover:bg-green-600 cursor-pointer" %>
+    <% end %>
+  `;}
+
+

@@ -6,7 +6,7 @@
         <!-- X button to remove from favourites -->
         <%= button_to 'X', car_favourite_path(favourite.car, favourite), 
     method: :delete, 
-    remote: true,  # Ensure remote: true for AJAX
+    remote: true, 
     class: "absolute top-2 right-2 text-red-500 hover:text-red-700 w-14 p-2 bg-white rounded-full shadow" %>
 
         <!-- Car content (image, title, etc.) -->

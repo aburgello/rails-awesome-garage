@@ -32,29 +32,23 @@
   <h3 class="text-xl font-semibold mt-6">Leave a Review</h3>
   <%= render 'review_form', car: @car, review: @review %>
 
-<div class="ajax-favourites-form">
-  <% if @favourites.any? { |f| f.car_id == @car.id } %>
-    <h3 class="text-xl font-semibold mt-6">This car is in your favourites</h3>
-    <%= form_with url: car_favourite_path(@car, @favourites.find { |f| f.car_id == @car.id }), method: :delete, local: false, data: { remote: true }, class: "favourites-form" do %>
-      <%= submit_tag "Remove from Favourites", class: 'mt-2 bg-red-500 text-white p-2 rounded hover:bg-red-600 cursor-pointer' %>
+  <div class="ajax-favourites-form">
+    <% if @favourites.any? { |f| f.car_id == @car.id } %>
+      <h3 class="text-xl font-semibold mt-6">This car is in your favourites</h3>
+      <%= form_with url: car_favourite_path(@car, @favourites.find { |f| f.car_id == @car.id }), method: :delete, local: false, data: { remote: true, turbo: false }, class: "favourites-form" do %>
+        <%= submit_tag "Remove from Favourites", class: 'mt-2 bg-red-500 text-white p-2 rounded hover:bg-red-600 cursor-pointer' %>
+      <% end %>
+    <% else %>
+      <h3 class="text-xl font-semibold mt-6">Favourite this car</h3>
+      <%= form_with(url: car_favourites_path(@car), method: :post, local: false) do |form| %>
+        <%= form.submit "Add to Favourites", class: "mt-2 bg-green-500 text-white p-2 rounded hover:bg-green-600 cursor-pointer" %>
+      <% end %>
     <% end %>
-  <% else %>
-    <h3 class="text-xl font-semibold mt-6">Favourite this car</h3>
-    <%= form_with url: car_favourites_path(@car), method: :post, data: { remote: true } do %>
-  <%= submit_tag "Add to Favourites", class: 'mt-2 bg-green-500 text-white p-2 rounded hover:bg-green-600 cursor-pointer' %>
-<% end %>
-
-  <% end %>
-</div>
-
-
-
-
-
-<% if flash[:notice] %>
-  <div id="flash-alert" class="bg-green-500 text-white p-4 rounded fixed top-4 right-4 z-50">
-    <%= flash[:notice] %>
   </div>
-<% end %>
 
+  <% if flash[:notice] %>
+    <div id="flash-alert" class="bg-green-500 text-white p-4 rounded fixed top-4 right-4 z-50">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
 </div>
