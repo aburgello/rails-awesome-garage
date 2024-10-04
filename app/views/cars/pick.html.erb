@@ -10,9 +10,6 @@
 <div class="ajax-favourites-form-pick mt-4 w-full"> 
   <%= link_to 'Pick Another Car', pick_a_car_path, class: 'w-full bg-blue-500 text-white p-2 rounded block hover:bg-blue-600 text-center' %> 
 
-  <% if @favourites.any? { |f| f.car_id != @car.id } %>
-      <%= link_to "Add to Favourites", class: "mt-2 bg-green-500 w-full text-white p-2 rounded block text-center hover:bg-green-600 cursor-pointer" %>
-  <% end %>
 </div>
 
   </div>
