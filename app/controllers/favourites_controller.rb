@@ -1,10 +1,10 @@
 class FavouritesController < ApplicationController
   def create
     @car = Car.find(params[:car_id])
-    Favourite.create(car: @car)
-    Rails.logger.debug "FavouritesController#create called for car #{@car.id}"
+    @favourite = Favourite.create(car: @car)
 
     respond_to do |format|
+      format.html { redirect_to @car, notice: "#{@car.brand} #{@car.model} was successfully added to your favourites." }
       format.js
     end
   end

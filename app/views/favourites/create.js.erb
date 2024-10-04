@@ -1,5 +1,3 @@
-// create.js.erb
-// Show a success message
 Swal.fire({
   title: 'Added!',
   text: 'The car has been added to your favourites.',
@@ -7,12 +5,10 @@ Swal.fire({
   confirmButtonText: 'OK'
 });
 
-// Optionally update the button to show "Remove from Favourites"
 const formContainer = document.querySelector('.ajax-favourites-form');
 formContainer.innerHTML = `
-  <h3 class="text-xl font-semibold mt-6">This car is in your favourites</h3>
-  <form action="<%= car_favourite_path(@car, @car.favourites.last) %>" method="post" data-remote="true" local="false">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Remove from Favourites" class="mt-2 bg-red-500 text-white p-2 rounded hover:bg-red-600 cursor-pointer">
-  </form>
+    <h3 class="text-xl font-semibold mt-6">This car is in your favourites</h3>
+    <%= form_with url: car_favourite_path(@car, @favourites.find { |f| f.car_id == @car.id }), method: :delete, local: false, data: { remote: true } do %>
+      <%= submit_tag "Remove from Favourites", class: 'mt-2 bg-red-500 text-white p-2 rounded hover:bg-red-600 cursor-pointer' %>
+    <% end %>
 `;

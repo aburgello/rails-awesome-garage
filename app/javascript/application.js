@@ -94,13 +94,8 @@ const flashAlert = document.getElementById("flash-alert");
 if (flashAlert) {
   // Show alert
   flashAlert.classList.add("slide-in");
-  
-  // Set a timeout to initiate the fade-out after a few seconds
-  setTimeout(() => {
-    flashAlert.classList.add("fade-out");
-    flashAlert.addEventListener("transitionend", () => {
+  flashAlert.classList.remove("slide-in");
+  flashAlert.classList.add("fade-out");
+  flashAlert.addEventListener("transitionend", () => {
       flashAlert.remove(); // Remove alert from DOM after fade-out completes
-    });
-  }, 3000); // Adjust time as needed (3000ms = 3 seconds)
-}
-
+    })};

@@ -71,18 +71,12 @@ nav img:hover {
 
 #flash-alert {
   animation: slide-in 0.5s ease forwards;
-  opacity: 1; /* Fully opaque when shown */
+  opacity: 1;
 }
 
-.fade-out {
-  opacity: 0; /* Fully transparent when fading out */
-  transition: opacity 0.5s ease; /* Duration of the fade-out transition */
-}
-
-/* Example of slide-in animation */
 @keyframes slide-in {
   from {
-    transform: translateY(-20px); /* or any other desired effect */
+    transform: translateY(25px); /* or any other desired effect */
     opacity: 0;
   }
   to {
@@ -90,7 +84,10 @@ nav img:hover {
     opacity: 1;
   }
 }
-
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
 
 .card {
   font-family: "Afacad Flux";
