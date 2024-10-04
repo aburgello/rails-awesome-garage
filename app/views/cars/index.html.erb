@@ -9,15 +9,14 @@
       <form action="/cars" method="get"> <!-- Update the action URL accordingly -->
         <div class="mb-4">
           <label class="block text-gray-700">Manufacturer</label>
-          <select name="brand" class="w-full p-2 border border-gray-300 rounded">
+            <select name="brand" class="w-full p-2 border border-gray-300 rounded">
             <option value="">All</option>
-            <option value="PORSCHE">Porsche</option>
-            <option value="LAMBORGHINI">Lamborghini</option>
-            <option value="FERRARI">Ferrari</option>
-            <option value="BMW">BMW</option>
-            <option value="AUDI">Audi</option>
-            <option value="MERCEDES">Mercedes-Benz</option>
-            <!-- Add more brands if needed -->
+            <option value="PORSCHE" <%= "selected" if params[:brand] == "PORSCHE" %>>Porsche</option>
+            <option value="LAMBORGHINI" <%= "selected" if params[:brand] == "LAMBORGHINI" %>>Lamborghini</option>
+            <option value="FERRARI" <%= "selected" if params[:brand] == "FERRARI" %>>Ferrari</option>
+            <option value="BMW" <%= "selected" if params[:brand] == "BMW" %>>BMW</option>
+            <option value="AUDI" <%= "selected" if params[:brand] == "AUDI" %>>Audi</option>
+            <option value="MERCEDES" <%= "selected" if params[:brand] == "MERCEDES" %>>Mercedes-Benz</option>
           </select>
         </div>
 
@@ -25,10 +24,10 @@
           <label class="block text-gray-700">Fuel Type</label>
           <select name="fuel" class="w-full p-2 border border-gray-300 rounded">
             <option value="">All</option>
-            <option value="Gasoline">Gasoline</option>
-            <option value="Diesel">Diesel</option>
-            <option value="Electric">Electric</option>
-            <option value="Hybrid">Hybrid</option>
+            <option value="Gasoline" <%= "selected" if params[:fuel] == "Gasoline" %>>Gasoline</option>
+            <option value="Diesel" <%= "selected" if params[:fuel] == "Diesel" %>>Diesel</option>
+            <option value="Electric" <%= "selected" if params[:fuel] == "Electric" %>>Electric</option>
+            <option value="Hybrid" <%= "selected" if params[:fuel] == "Hybrid" %>>Hybrid</option>
           </select>
         </div>
 
@@ -36,15 +35,9 @@
           <label class="block text-gray-700">Year</label>
           <select name="year" class="w-full p-2 border border-gray-300 rounded">
             <option value="">All</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
-            <option value="2024">2024</option>
+            <% (2015..2024).each do |year| %>
+              <option value="<%= year %>" <%= "selected" if params[:year] == year.to_s %>><%= year %></option>
+            <% end %>
           </select>
         </div>
 
