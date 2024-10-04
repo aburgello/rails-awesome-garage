@@ -199,6 +199,9 @@ nav img:hover {
     margin-bottom: 25px;  
     margin-top: -15px;
   }
+  .h-64 {
+    height: 8rem;
+}
 
 }
 
