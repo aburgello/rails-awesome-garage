@@ -1,9 +1,24 @@
-// destroy.js.erb
-const reviewId = '<%= @review.id %>'; // This should be the ID of the review being deleted
-const reviewElement = document.getElementById(`review_${reviewId}`);
-
-if (reviewElement) {
-  reviewElement.remove(); // Remove the review from the DOM
+if (typeof favouriteElement == 'undefined'){
+const favouriteElement = document.querySelector('#favourite_<%= @favourite.id %>');
+if (favouriteElement) {
+  favouriteElement.remove();
 }
+console.log("Favourite removed:", favouriteElement);
+};
 
-// You can also return a success message, but the alert should be handled in the JS code
+Swal.fire({
+  title: 'Removed from Favourites',
+  text: 'Removed <%= @favourite.car.brand %> <%= @favourite.car.model %> from your favourites.',
+  icon: 'warning',
+  confirmButtonText: 'OK',
+});
+
+
+if (typeof formContainer == 'undefined'){
+const formContainer = document.querySelector('.ajax-favourites-form');
+  formContainer.innerHTML = ` 
+    <h3 class="text-xl font-semibold mt-6">Favourite this car</h3>
+    <%= form_with(url: car_favourites_path(@car), method: :post, local: false) do |form| %>
+      <%= form.submit "Add to Favourites", class: "mt-2 bg-green-500 text-white p-2 rounded hover:bg-green-600 cursor-pointer" %>
+    <% end %>
+  `;}

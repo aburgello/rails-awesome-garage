@@ -1,8 +1,29 @@
-const reviewId = '<%= @review.id %>'; // This should be the ID of the review being deleted
-const reviewElement = document.getElementById(`review_${reviewId}`);
+// This will show a SweetAlert confirmation dialog when deleting a review
+Swal.fire({
+  title: 'Are you sure?',
+  text: 'Once deleted, you will not be able to recover this review!',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonText: 'Yes, delete it!',
+  cancelButtonText: 'No, keep it'
+}).then((result) => {
+  if (result.isConfirmed) {
+    const reviewId = '<%= @review.id %>'; // ID of the review being deleted
+    const reviewElement = document.getElementById(`review_${reviewId}`);
+    
+    if (reviewElement) {
+      reviewElement.remove(); // Remove the review from the DOM
+    }
 
-if (reviewElement) {
-  reviewElement.remove(); // Remove the review from the DOM
-}
-
-// You can also return a success message, but the alert should be handled in the JS code
+    // Show success alert after removal
+    Swal.fire({
+      title: 'Deleted!',
+      text: 'Your review has been deleted.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
+  } else {
+    // Show cancellation message
+    Swal.fire('Cancelled', 'Your review is safe :)', 'error');
+  }
+});

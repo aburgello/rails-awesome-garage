@@ -19,12 +19,20 @@ class ReviewsController < ApplicationController
 
 
   def destroy
-    @review = Review.find(params[:id])
+    @review = Review.find(params[:id]) # Ensure you find the review by ID
     @review.destroy
+
     respond_to do |format|
-      format.js
+      format.html { redirect_to car_path(@review.car), notice: "Review was successfully deleted." }
+      format.js   # This will render destroy.js.erb
+    end
+  rescue ActiveRecord::RecordNotFound
+    respond_to do |format|
+      format.html { redirect_to car_path(@review.car), alert: "Review not found." }
+      format.js   # You might want to handle the error on the client side
     end
   end
+
 
   private
 

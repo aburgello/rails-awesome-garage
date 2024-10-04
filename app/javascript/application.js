@@ -3,65 +3,44 @@ import "@hotwired/turbo-rails";
 import "controllers";
 import "@rails/ujs";
 
-document.addEventListener("DOMContentLoaded", function () {
-    handleDeleteReview();
+document.addEventListener("turbo:load", function () {
+    console.log("application.js is loaded");
+    handleDeleteReview(); // Attach delete review handlers
   });
-
-function handleFormSubmission() {
-    if (formListenerAttached) return;
-    document.querySelectorAll('form').forEach(form => {
-        console.log("Attaching submit listener to form: ", form);
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            fetch(this.action, {
-                method: this.method,
-                headers: {
-                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                    'Accept': 'application/javascript',
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams(new FormData(this))
-            })
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
-                return response.text();
-            })
-            .then(data => {
-                eval(data);
-            })
-            .catch(error => console.error('There was a problem with your fetch operation:', error));
-        });
-    });
-}
-
-   
-  function handleFormSubmit(event) {
-    event.preventDefault();
   
-    fetch(this.action, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/javascript',
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams(new FormData(this))
-    })
-    .then(response => {
-      if (!response.ok) throw new Error('Network response was not ok');
-      return response.text();
-    })
-    .then(data => {
-      eval(data);
-    })
-    .catch(error => console.error('There was a problem with your fetch operation:', error));
+  // This function handles form submissions using fetch API
+  function handleFormSubmission() {
+    document.querySelectorAll('form').forEach(form => {
+      console.log("Attaching submit listener to form: ", form);
+  
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        fetch(this.action, {
+          method: this.method,
+          headers: {
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept': 'application/javascript',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams(new FormData(this))
+        })
+        .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.text();
+        })
+        .then(data => {
+          eval(data); // Evaluate the returned JS
+        })
+        .catch(error => console.error('There was a problem with your fetch operation:', error));
+      });
+    });
   }
+  
+  // This function handles the delete button functionality
   function handleDeleteReview() {
-    console.log("handleDeleteReview function called");
     document.querySelectorAll('.delete-review').forEach(button => {
       button.addEventListener('click', function(event) {
-        console.log("Delete button clicked"); // Check if this logs
-        event.preventDefault();
+        event.preventDefault(); // Prevent the default action of the button
   
         const reviewId = this.getAttribute('data-review-id');
         const reviewUrl = this.getAttribute('data-review-url');
@@ -75,7 +54,6 @@ function handleFormSubmission() {
           cancelButtonText: 'No, keep it'
         }).then((result) => {
           if (result.isConfirmed) {
-            console.log("Confirmed delete"); // Check if this logs
             fetch(reviewUrl, {
               method: 'DELETE',
               headers: {
@@ -85,19 +63,20 @@ function handleFormSubmission() {
             })
             .then(response => {
               if (response.ok) {
+                const reviewElement = document.getElementById(`review_${reviewId}`);
+                if (reviewElement) {
+                  reviewElement.remove(); // Remove the review from the DOM
+                }
+                // Success alert for deletion
                 Swal.fire({
                   title: 'Deleted!',
                   text: 'Your review has been deleted.',
                   icon: 'success',
                   confirmButtonText: 'OK'
                 });
-                return response.text(); // This will include the response from destroy.js.erb
               } else {
                 throw new Error('Network response was not ok');
               }
-            })
-            .then(data => {
-              eval(data); // This will execute the code in destroy.js.erb
             })
             .catch(error => {
               console.error('There was a problem with your fetch operation:', error);
@@ -110,12 +89,3 @@ function handleFormSubmission() {
     });
   }
   
-  
-
-document.addEventListener("turbo:load", function () {
-  console.log("application.js is loaded");
-  handleFormSubmission();
-});
-
-
-

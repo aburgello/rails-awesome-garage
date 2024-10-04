@@ -3,13 +3,11 @@
     <% @favourites.each do |favourite| %>
       <li id="favourite_<%= favourite.id %>" class="relative bg-white shadow rounded-lg p-4 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
         
-        <!-- X button to remove from favourites -->
         <%= button_to 'X', car_favourite_path(favourite.car, favourite), 
     method: :delete, 
     remote: true, 
     class: "absolute top-2 right-2 text-red-500 hover:text-red-700 w-14 p-2 bg-white rounded-full shadow" %>
 
-        <!-- Car content (image, title, etc.) -->
         <%= link_to car_path(favourite.car) do %>
           <% car = favourite.car %>
           <% if car.image_url.present? %>
