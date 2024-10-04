@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   get "models", to: "cars#models", as: "models"
 
   resources :favourites, only: [ :index ]
+  get "pick_a_car", to: "cars#pick"
 end
