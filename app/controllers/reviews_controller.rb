@@ -20,17 +20,12 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
-
-    if @review.destroy
-      respond_to do |format|
-        format.js
-      end
-    else
-      respond_to do |format|
-        format.js
-      end
+    @review.destroy
+    respond_to do |format|
+      format.js
     end
   end
+
   private
 
   def set_car

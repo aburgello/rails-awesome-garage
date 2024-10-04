@@ -6,7 +6,6 @@
     confirmButtonText: "Okay",
   }).then(() => {
     // Optionally, you can reload the page or do something else after the alert
-    location.reload();
   });
 
   // Append the new review to the list
@@ -16,7 +15,7 @@
       <div>
         <strong class="font-semibold">Rating:</strong> <%= @review.rating %> - <%= @review.comment %>
       </div>
-      <%= button_to 'Delete', car_review_path(@car, @review), method: :delete, class: "delete-review ml-4 bg-red-500 text-white p-1 rounded hover:bg-red-600" %>
+      <%= button_to 'Delete', car_review_path(@car, @review), method: :delete, remote: true, class: "delete-review ml-4 bg-red-500 text-white p-1 rounded hover:bg-red-600" %>
     </li>
   `);
 <% else %>

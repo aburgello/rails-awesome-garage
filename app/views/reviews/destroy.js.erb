@@ -1,30 +1,8 @@
-Swal.fire({
-  title: 'Are you sure?',
-  text: 'Once deleted, you will not be able to recover this review!',
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonText: 'Yes, delete it!',
-  cancelButtonText: 'No, keep it'
-}).then((result) => {
-  if (result.isConfirmed) {
-    // Proceed with deletion (make AJAX request if necessary)
-    // If you are not deleting it via AJAX, just show the success alert and remove the review
-    const reviewId = '<%= @review.id %>'; // This should be updated dynamically if you have multiple reviews
-    const reviewElement = document.getElementById(`review_${reviewId}`);
+const reviewId = '<%= @review.id %>'; // This should be the ID of the review being deleted
+const reviewElement = document.getElementById(`review_${reviewId}`);
 
-    if (reviewElement) {
-      reviewElement.remove(); // Remove the review from the DOM
-    }
+if (reviewElement) {
+  reviewElement.remove(); // Remove the review from the DOM
+}
 
-    // Show success alert after removal
-    Swal.fire({
-      title: 'Deleted!',
-      text: 'Your review has been deleted.',
-      icon: 'success',
-      confirmButtonText: 'OK'
-    });
-  } else {
-    // Show cancellation message
-    Swal.fire('Cancelled', 'Your review is safe :)', 'error');
-  }
-});
+// You can also return a success message, but the alert should be handled in the JS code

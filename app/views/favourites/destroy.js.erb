@@ -1,25 +1,9 @@
-if (typeof favouriteElement == 'undefined'){
-const favouriteElement = document.querySelector('#favourite_<%= @favourite.id %>');
-if (favouriteElement) {
-  favouriteElement.remove();
+// destroy.js.erb
+const reviewId = '<%= @review.id %>'; // This should be the ID of the review being deleted
+const reviewElement = document.getElementById(`review_${reviewId}`);
+
+if (reviewElement) {
+  reviewElement.remove(); // Remove the review from the DOM
 }
-console.log("Favourite removed:", favouriteElement);
-};
 
-Swal.fire({
-  title: 'Removed!',
-  text: '<%= @favourite.car.brand %> <%= @favourite.car.model %> has been removed from your favourites.',
-  icon: 'success',
-  confirmButtonText: 'OK'
-});
-
-if (typeof formContainer == 'undefined'){
-const formContainer = document.querySelector('.ajax-favourites-form');
-  formContainer.innerHTML = ` 
-    <h3 class="text-xl font-semibold mt-6">Favourite this car</h3>
-    <%= form_with(url: car_favourites_path(@car), method: :post, local: false) do |form| %>
-      <%= form.submit "Add to Favourites", class: "mt-2 bg-green-500 text-white p-2 rounded hover:bg-green-600 cursor-pointer" %>
-    <% end %>
-  `;}
-
-
+// You can also return a success message, but the alert should be handled in the JS code

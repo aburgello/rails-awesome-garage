@@ -1,10 +1,11 @@
 // create.js.erb
 Swal.fire({
-  title: 'Added!',
-  text: 'The car has been added to your favourites.',
+  title: 'Added to Favorites',
+  text: 'You have added <%= @car.brand %> <%= @car.model %> to your favourites, great choice!',
   icon: 'success',
-  confirmButtonText: 'OK'
+  confirmButtonText: 'OK',
 });
+
 console.log("Favourite added:");
 
 // Update the favorites form to show the "Remove from Favourites" button
