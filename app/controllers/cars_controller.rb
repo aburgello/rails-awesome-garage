@@ -25,5 +25,10 @@ class CarsController < ApplicationController
 
   def pick
     @car = Car.order("RANDOM()").first
+
+    respond_to do |format|
+      format.html # for regular requests
+      format.js   # for AJAX requests
+    end
   end
 end

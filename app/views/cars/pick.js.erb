@@ -1,0 +1,8 @@
+// Update the car information without refreshing the page
+document.querySelector('.card').innerHTML = `
+<a href="/cars/<%= @car.id %>" style="display: block; height: 530px;">
+        <h1 class="text-xl text-center font-semibold pb-2"><%= @car.brand %> <%= @car.model %></h1> 
+        <img src="<%= @car.image_url %>" alt="<%= @car.brand %> <%= @car.model %>" class="w-full h-full object-cover rounded-lg mb-2">
+      </a>
+`;
+
