@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="<%= asset_path('ExecutiveCar_Black_icon-icons.com_54904.ico') %>">
   <link rel="icon" type="image/x-icon" href="<%= asset_path('ExecutiveCar_Black_icon-icons.com_54904.ico') %>">
@@ -27,9 +28,9 @@
 <body>
 <nav class="bg-gray-800 shadow-md py-4 relative">
   <div class="container mx-auto flex justify-between items-center">
-    <%= link_to image_tag('car-wash.png'), root_path, style: "margin-left: 15px; border-radius: 50%; filter: invert(1);", class: 'logo-img' %>
+    <%= link_to image_tag('car-wash.png'), root_path, style: "margin-left: 25px; border-radius: 50%; filter: invert(1);", class: 'logo-img' %>
 
-    <div class="flex items-center justify-center flex-1">
+    <div class="flex items-center flex-1 ml-8">
       <%= link_to 'Your Awesome Garage', root_path, class: 'logo-text text-white sm:text-xl md:text-3xl lg:text-5xl font-bold ml-4' %>
     </div>
 
