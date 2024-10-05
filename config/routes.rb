@@ -26,6 +26,7 @@ end
 resources :battles, only: [ :index, :create ] do
   collection do
     get "new_cars", to: "battles#new_cars"
+    get "leaderboard", to: "battles#leaderboard"
     post "vote/:id", to: "battles#vote", as: "vote_battle"
   end
 end

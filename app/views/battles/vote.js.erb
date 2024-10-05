@@ -11,6 +11,8 @@ else {
 // After a delay, load new cars
 setTimeout(() => {
   loadNewCars();
+    updateLeaderboard();
+
 }, 100);
 
 
@@ -66,4 +68,16 @@ function loadNewCars() {
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
     });
+}
+
+function updateLeaderboard() {
+  fetch('<%= leaderboard_battles_path %>', {
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'
+    }
+  })
+  .then(response => response.text())
+  .then(html => {
+    document.querySelector('#leaderboard').innerHTML = html; // Update leaderboard section
+  });
 }

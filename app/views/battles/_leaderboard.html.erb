@@ -1,0 +1,13 @@
+<div id="leaderboard" class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+  <% if top_cars.any? %>
+    <% top_cars.each do |car| %>
+      <div class="bg-white p-4 rounded-lg shadow-md text-center">
+        <h3 class="text-xl font-semibold"><%= car.brand %> <%= car.model %></h3>
+        <img src="<%= car.image_url %>" alt="<%= car.brand %> <%= car.model %>" class="w-full h-40 object-cover rounded-lg mb-2">
+        <p class="text-lg text-gray-600 mb-2"><strong>Votes:</strong> <%= car.votes_count || 0 %></p>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="text-lg text-gray-600 text-center">No cars have votes yet!</p>
+  <% end %>
+</div>

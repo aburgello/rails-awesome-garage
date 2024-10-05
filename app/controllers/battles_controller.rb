@@ -24,11 +24,10 @@ class BattlesController < ApplicationController
       }
     }
   end
-
   def index
     @car1, @car2 = Car.order("RANDOM()").limit(2)
+    @top_cars = Car.where("votes_count > ?", 0).order(votes_count: :desc).limit(3)
   end
-
 
   def create
     car = Car.find(params[:car_id])
@@ -49,5 +48,10 @@ class BattlesController < ApplicationController
       format.js
       format.json { render json: { success: true, votes_count: @votes_count, car1: @car1, car2: @car2 } }
     end
+  end
+
+  def leaderboard
+    @top_cars = Car.where("votes_count > ?", 0).order(votes_count: :desc).limit(3)
+    render partial: "battles/leaderboard", locals: { top_cars: @top_cars }
   end
 end
