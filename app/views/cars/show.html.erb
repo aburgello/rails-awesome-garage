@@ -38,7 +38,7 @@
 <% if @car.reviews.any? %> 
   <ul class="reviews-list space-y-4 mt-4">
     <% @car.reviews.each do |review| %>
-      <li id="review_<%= review.id %>" class="bg-white shadow-md rounded-lg p-4 border-l-4 border-blue-500">
+      <li id="review_<%= review.id %>" class="bg-white shadow-md rounded-lg p-4 border-l-4 border-black">
         <div class="flex justify-between items-center">
           <div class="flex items-center space-x-2">
             <span class="text-yellow-400">
