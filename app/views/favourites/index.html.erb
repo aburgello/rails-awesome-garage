@@ -11,9 +11,9 @@
         <%= link_to car_path(favourite.car) do %>
           <% car = favourite.car %>
           <% if car.image_url.present? %>
-            <img src="<%= car.image_url %>" alt="<%= car.brand %> <%= car.model %>" class="w-full h-40 object-cover rounded-t-lg mb-2">
+            <img src="<%= car.image_url %>" alt="<%= car.brand %> <%= car.model %>" class="w-full h-56 object-cover rounded-t-lg mb-2">
           <% else %>
-            <img src="https://via.placeholder.com/300x200" alt="No image available" class="w-full h-40 object-cover rounded-t-lg mb-2">
+            <img src="https://via.placeholder.com/300x200" alt="No image available" class="w-full h-56 object-cover rounded-t-lg mb-2">
           <% end %>
           <h2 class="text-xl font-semibold"><%= car.brand %> <%= car.model %></h2>
           <p class="text-gray-500">Year: <%= car.year %></p>
