@@ -1,11 +1,22 @@
-<%= form_with model: [@car, @review], local: false do |form| %>
+<%= form_with(model: [@car, @review], local: false, class: "mt-4 bg-gray-100 p-4 rounded-lg shadow-md") do |form| %>
+  <fieldset class="mb-4">
+    <legend class="text-lg font-bold mb-2">Rate this Car:</legend>
+    <div class="flex space-x-1">
+      <% (1..5).each do |i| %>
+        <label class="cursor-pointer">
+          <input type="radio" name="review[rating]" value="<%= i %>" class="hidden" required />
+          <i class="fa fa-star text-gray-400 hover:text-yellow-500"></i>
+        </label>
+      <% end %>
+    </div>
+  </fieldset>
+
   <div class="mb-4">
-    <%= form.label :comment, class: 'block text-gray-700' %>
-    <%= form.text_area :comment, class: 'mt-1 block w-full border rounded-md p-2 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50' %>
+    <%= form.label :comment, "Your Review:", class: "block font-semibold mb-1" %>
+    <%= form.text_area :comment, rows: 3, class: "w-full border rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-500" %>
   </div>
-  <div class="mb-4">
-    <%= form.label :rating, class: 'block text-gray-700' %>
-    <%= form.number_field :rating, class: 'mt-1 block w-full border rounded-md p-2 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50', min: 1, max: 5 %>
+
+  <div class="flex justify-end">
+    <%= form.submit "Submit Review", class: "bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition-all" %>
   </div>
-  <%= form.submit 'Submit Review', class: 'mt-2 bg-blue-500 text-white p-2 rounded hover:bg-blue-600 cursor-pointer' %>
 <% end %>

@@ -37,14 +37,54 @@ document.querySelectorAll('.h-64').forEach(function(element) {
 });
 });
   
+document.addEventListener("turbo:load", function() {
+    const stars = document.querySelectorAll('input[name="review[rating]"]');
 
-  // This function handles form submissions using fetch API
+    stars.forEach((star) => {
+        star.addEventListener("mouseenter", () => {
+            const rating = star.value;
+            stars.forEach((s) => {
+                const starIcon = s.nextElementSibling;
+                if (starIcon && s.value <= rating) {
+                    starIcon.classList.add("text-yellow-500");
+                }
+            });
+        });
+
+        star.addEventListener("mouseleave", () => {
+            stars.forEach((s) => {
+                const starIcon = s.nextElementSibling;
+                if (starIcon && !s.checked) {
+                    starIcon.classList.remove("text-yellow-500");
+                }
+            });
+        });
+
+        star.addEventListener("change", () => {
+            stars.forEach((s) => {
+                const starIcon = s.nextElementSibling;
+                if (starIcon) {
+                    starIcon.classList.remove("text-yellow-500");
+                }
+            });
+            for (let i = 0; i < star.value; i++) {
+                const starIcon = stars[i].nextElementSibling;
+                if (starIcon) {
+                    starIcon.classList.add("text-yellow-500");
+                }
+            }
+        });
+    });
+});
+
+
+  
   function handleFormSubmission() {
     document.querySelectorAll('form').forEach(form => {
       console.log("Attaching submit listener to form: ", form);
   
       form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault();
         fetch(this.action, {
           method: this.method,
           headers: {
@@ -59,18 +99,17 @@ document.querySelectorAll('.h-64').forEach(function(element) {
           return response.text();
         })
         .then(data => {
-          eval(data); // Evaluate the returned JS
+          eval(data);
         })
         .catch(error => console.error('There was a problem with your fetch operation:', error));
       });
     });
   }
   
-  // This function handles the delete button functionality
   function handleDeleteReview() {
     document.querySelectorAll('.delete-review').forEach(button => {
       button.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default action of the button
+        event.preventDefault();
   
         const reviewId = this.getAttribute('data-review-id');
         const reviewUrl = this.getAttribute('data-review-url');
@@ -95,9 +134,8 @@ document.querySelectorAll('.h-64').forEach(function(element) {
               if (response.ok) {
                 const reviewElement = document.getElementById(`review_${reviewId}`);
                 if (reviewElement) {
-                  reviewElement.remove(); // Remove the review from the DOM
+                  reviewElement.remove();
                 }
-                // Success alert for deletion
                 Swal.fire({
                   title: 'Deleted!',
                   text: 'Your review has been deleted.',

@@ -1,9 +1,9 @@
 <div class="container mx-auto p-6">
-  <h1 class="text-4xl font-bold mb-4 mt-4">
+  <h1 class="text-4xl font-bold mb-6 ">
     <%= @car.brand %> <%= @car.model %> (Year: <%= @car.year %>)
   </h1>
 
-  <%= image_tag @car.image_url.presence || 'https://via.placeholder.com/600x400', alt: "#{@car.brand} #{@car.model}", class: "w-full h-64 object-cover rounded-lg mb-4 cursor-pointer" %>
+  <%= image_tag @car.image_url, alt: "#{@car.brand} #{@car.model}", class: "w-full h-64 object-cover rounded-lg mb-4 cursor-pointer" %>
   <h2 class="text-2xl font-semibold mt-6">Current owner:</h2>
   <p class="text-2xl text-blue-900 mb-2"><%= @car.owner.nickname %></p>
   <p class="text-lg text-gray-700 mb-2"><strong class="text-black">Fuel type: </strong><%= @car.fuel %></p> 
@@ -28,22 +28,39 @@
 
 <h3 class="text-xl font-semibold mt-6">Reviews:</h3>
 
-<% if @car.reviews.any? %>  <!-- Check if there are any reviews -->
-  <ul class="reviews-list space-y-2 mt-2">
+<% if @car.reviews.any? %> 
+  <ul class="reviews-list space-y-4 mt-4">
     <% @car.reviews.each do |review| %>
-      <li id="review_<%= review.id %>" class="border-b pb-2 mb-2 flex justify-between items-center">
-        <div>
-          <strong class="font-semibold">Rating:</strong> <%= review.rating %> - <%= review.comment %>
+      <li id="review_<%= review.id %>" class="bg-white shadow-md rounded-lg p-4 border-l-4 border-blue-500">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-2">
+            <span class="text-yellow-400">
+              <% review.rating.times do %>
+                <i class="fa fa-star"></i>
+              <% end %>
+              <% (5 - review.rating).times do %>
+                <i class="fa fa-star-o"></i> 
+              <% end %>
+            </span>
+            <p class="text-gray-800 font-semibold">
+              <%= review.comment %>
+            </p>
+          </div>
+          <button class="delete-review bg-red-500 text-white py-2 px-4 rounded-full hover:bg-red-600 transition-all"
+                  data-review-id="<%= review.id %>" 
+                  data-review-url="<%= car_review_path(@car, review) %>">
+            <i class="fa fa-trash-o"></i> 
+          </button>
         </div>
-        <button class="delete-review ml-4 bg-red-500 text-white p-1 rounded hover:bg-red-600" data-review-id="<%= review.id %>" data-review-url="<%= car_review_path(@car, review) %>">
-          Delete
-        </button>
       </li>
     <% end %>
   </ul>
 <% else %>
-  <p class="text-lg text-gray-600 mt-2">There are no reviews for this car yet. Be the first to leave one!</p>
+  <p class="text-lg text-gray-600 mt-4 p-4 bg-gray-100 rounded-lg">
+    There are no reviews for this car yet. Be the first to leave one!
+  </p>
 <% end %>
+
 
 
   <h3 class="text-xl font-semibold mt-6">Leave a Review</h3>
