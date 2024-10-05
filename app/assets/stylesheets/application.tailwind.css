@@ -186,7 +186,9 @@ nav img:hover {
   border-color: #fbbf24;
   box-shadow: 0 0 15px rgba(251, 191, 36, 0.7); 
 }
-
+.logo-img{
+  width: 60px;
+}
 @media (max-width: 640px) {
   nav span{
     display: none;
@@ -209,6 +211,9 @@ nav img:hover {
   }
   .h-64 {
     height: 8rem;
+}
+.logo-img{
+  width: 40px;
 }
 
 }
