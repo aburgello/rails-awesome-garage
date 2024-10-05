@@ -217,24 +217,34 @@ nav img:hover {
 .logo-img{
   width: 40px;
 }
-
+.container-show {
+  max-width: 540px;
+}
 }
 
 @media (min-width: 768px) {
   .container {
       max-width: 1068px;
   }
-
+  .container-show {
+    max-width: 1024px;
+}
 }
 
 @media (min-width: 1024px) {
   .container {
       max-width: 1324px;
   }
+  .container-show {
+    max-width: 1224px;
+}
 }
 
 @media (min-width: 1536px) {
   .container {
       max-width: 1736px;
   }
+  .container-show {
+    max-width: 1436px;
+}
 }
