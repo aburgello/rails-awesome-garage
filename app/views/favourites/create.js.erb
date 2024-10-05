@@ -13,7 +13,6 @@ if (typeof formContainer == 'undefined'){
 const formContainer = document.querySelector('.ajax-favourites-form');
 if (formContainer) {
   formContainer.innerHTML = `
-    <h3 class="text-xl font-semibold mt-6">This car is in your favourites</h3>
     <form action="<%= car_favourite_path(@car, @favourite) %>" method="post" data-remote="true" local="false" >
       <input type="hidden" name="_method" value="delete">
       <input type="submit" value="Remove from Favourites" class="mt-2 bg-red-500 text-white p-2 rounded hover:bg-red-600 cursor-pointer">

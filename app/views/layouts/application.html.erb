@@ -18,10 +18,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="/assets/application.tailwind.css" rel="stylesheet">
-   <%= javascript_importmap_tags %> <!-- Importmap should go here if used -->
+   <%= javascript_importmap_tags %> 
  <script type="module" src="<%= asset_path 'application.js' %>"></script>
 
-  <!-- Load SweetAlert2 before your custom scripts -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -30,11 +29,10 @@
   <div class="container mx-auto flex justify-between items-center">
     <%= link_to image_tag('car-wash.png'), root_path, style: "margin-left: 15px; border-radius: 50%; filter: invert(1);", class: 'logo-img' %>
 
-    <div class="flex items-center justify-center flex-1"> <!-- Use flex-1 to fill remaining space -->
+    <div class="flex items-center justify-center flex-1">
       <%= link_to 'Your Awesome Garage', root_path, class: 'logo-text text-white sm:text-xl md:text-3xl lg:text-5xl font-bold ml-4' %>
     </div>
 
-    <!-- Navbar Links -->
     <ul class="flex space-x-4 mr-6">
       <li><%= link_to 'Cars', cars_path, class: 'text-white navbar-link' %></li>
       <li><%= link_to 'Pick One', pick_a_car_path, class: 'text-white navbar-link' %></li>
