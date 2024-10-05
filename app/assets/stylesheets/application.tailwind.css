@@ -223,7 +223,6 @@ nav img:hover {
 @media (min-width: 1024px) {
   .container {
       max-width: 1324px;
-      padding:10px
   }
 }
 
