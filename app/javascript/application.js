@@ -76,9 +76,45 @@ document.addEventListener("turbo:load", function() {
         });
     });
 });
+document.addEventListener('turbo:load', function() {
 
-
+document.addEventListener("DOMContentLoaded", function () {
+    const voteButtons = document.querySelectorAll('.vote-btn');
   
+    voteButtons.forEach(button => {
+      button.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent default form submission
+  
+        const carId = this.dataset.carId; // Get the car ID from the data attribute
+        fetch(`/battles/vote/${carId}`, {
+            method: "POST",
+            headers: {
+              "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ car_id: carId })
+          })
+          .then(response => {
+            if (response.ok) {
+              return response.text(); // Change this line to handle text response
+            }
+            throw new Error('Network response was not ok.');
+          })
+          .then(data => {
+            // Assuming data contains the rendered JavaScript from vote.js.erb
+            eval(data); // Executes the JS from vote.js.erb
+          })
+          .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+          });
+          
+          
+      });
+    });
+  });
+});
+  
+
   function handleFormSubmission() {
     document.querySelectorAll('form').forEach(form => {
       console.log("Attaching submit listener to form: ", form);

@@ -1,0 +1,61 @@
+// Update the vote count for the car
+if (typeof voteCountElement == 'undefined') {
+let voteCountElement = document.querySelector(`#vote-count-<%= @car.id %>`);
+if (voteCountElement) {
+  voteCountElement.innerText = <%= @votes_count %>; // Update with the new count
+}
+else {
+  voteCountElement.innerText = <%= @votes_count %>; // Update with the new count
+}
+}
+// After a delay, load new cars
+setTimeout(() => {
+  loadNewCars();
+}, 100);
+
+
+
+function loadNewCars() {
+  fetch('/battles/new_cars')  // This route should return two new cars
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Assuming data contains car1 and car2 information
+      const carContainer = document.querySelector('#car-container');
+      
+      const car1HTML = `
+        <div class="card bg-white p-6 rounded-lg shadow-md w-1/2 mx-4 text-center">
+          <h2 class="text-2xl font-semibold">${data.car1.brand} ${data.car1.model}</h2>
+          <img src="${data.car1.image_url}" alt="${data.car1.brand} ${data.car1.model}" class="w-full h-64 object-cover rounded-lg mb-4">
+          <p class="text-lg text-gray-600 mb-2"><strong>Year:</strong> ${data.car1.year}</p>
+          <p class="text-lg text-gray-600 mb-2"><strong>Fuel:</strong> ${data.car1.fuel}</p>
+          <p class="text-lg text-gray-600 mb-2"><strong>Vote Count:</strong> <span id="vote-count-${data.car1.id}">${data.car1.votes_count || 0}</span></p>
+          <form action="/battles/vote/${data.car1.id}" method="post" data-remote="true">
+            <button type="submit" class="vote-btn bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition-all mt-4" data-car_id="${data.car1.id}">Vote for this car</button>
+          </form>
+        </div>
+      `;
+      
+      const car2HTML = `
+        <div class="card bg-white p-6 rounded-lg shadow-md w-1/2 mx-4 text-center">
+          <h2 class="text-2xl font-semibold">${data.car2.brand} ${data.car2.model}</h2>
+          <img src="${data.car2.image_url}" alt="${data.car2.brand} ${data.car2.model}" class="w-full h-64 object-cover rounded-lg mb-4">
+          <p class="text-lg text-gray-600 mb-2"><strong>Year:</strong> ${data.car2.year}</p>
+          <p class="text-lg text-gray-600 mb-2"><strong>Fuel:</strong> ${data.car2.fuel}</p>
+          <p class="text-lg text-gray-600 mb-2"><strong>Vote Count:</strong> <span id="vote-count-${data.car2.id}">${data.car2.votes_count || 0}</span></p>
+          <form action="/battles/vote/${data.car2.id}" method="post" data-remote="true">
+            <button type="submit" class="vote-btn bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition-all mt-4" data-car_id="${data.car2.id}">Vote for this car</button>
+          </form>
+        </div>
+      `;
+      
+      carContainer.innerHTML = `${car1HTML}<div class="w-1/6 mx-2 text-center text-3xl font-bold">VS</div>${car2HTML}`;
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+}
