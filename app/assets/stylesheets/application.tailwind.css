@@ -179,7 +179,7 @@ nav img:hover {
 }
 
 
-@media (max-width: 540px) {
+@media (max-width: 640px) {
   nav span{
     display: none;
   }

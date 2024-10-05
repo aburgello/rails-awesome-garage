@@ -7,19 +7,35 @@ document.addEventListener("turbo:load", function () {
     console.log("application.js is loaded");
     handleDeleteReview(); // Attach delete review handlers
   });
-  document.addEventListener('turbo:load', function() {
-    document.querySelectorAll('.h-64').forEach(function(element) {
-      element.addEventListener('click', function(event) {
-        if (element.classList.contains('h-64')) {
-          element.classList.remove('h-64');
-          element.classList.add('h-auto');
-        } else {
-          element.classList.remove('h-auto');
-          element.classList.add('h-64');
-        }
+document.addEventListener('turbo:load',function() {
+
+    const filterToggle = document.getElementById('filter-toggle');
+    const filterSection = document.getElementById('filter-section');
+  
+    console.log("filterSection is defined");
+
+    if (filterToggle) {
+        console.log("filterToggle is defined");
+
+      filterToggle.addEventListener('click', () => {
+        filterSection.classList.toggle('hidden');
       });
+    }
+});
+
+document.addEventListener('turbo:load', function() {
+document.querySelectorAll('.h-64').forEach(function(element) {
+    element.addEventListener('click', function(event) {
+    if (element.classList.contains('h-64')) {
+        element.classList.remove('h-64');
+        element.classList.add('h-auto');
+    } else {
+        element.classList.remove('h-auto');
+        element.classList.add('h-64');
+    }
     });
-  });
+});
+});
   
 
   // This function handles form submissions using fetch API
@@ -103,3 +119,5 @@ document.addEventListener("turbo:load", function () {
     });
   }
   
+
+

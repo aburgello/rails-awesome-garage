@@ -3,7 +3,12 @@
     <h1 class="text-5xl font-bold text-gray-800">Cars List</h1>
     <p class="text-lg text-gray-400 mb-5 border-b-2 pb-3">Explore your collection!</p>
 
-    <div class="w-full md:w-4/5"> <!-- Filter Section -->
+    <div class="bg-gray-200 p-4 mb-2 md:hidden">
+    <!-- Filter Button -->
+    <button id="filter-toggle" class="w-full bg-blue-500 text-white p-2 rounded">Toggle Filters</button>
+    </div>
+
+    <div id="filter-section" class="w-full md:w-4/5 hidden md:block lg:block"> <!-- Filter Section -->
       <h2 class="text-2xl font-bold mb-2">Filters</h2>
       <form action="/cars" method="get">
         <div class="mb-4">
