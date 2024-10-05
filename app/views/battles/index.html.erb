@@ -1,14 +1,17 @@
 <div class="container mx-auto p-6">
   <h1 class="text-5xl font-bold mb-6 mt-4 text-center">Make your pick!</h1>
   
-  <div class="battle-container flex justify-between items-center" id="car-container">
-    
-    <div class="card bg-white p-6 rounded-lg shadow-md w-1/2 mx-2 text-center">
+  <!-- Grid layout for cars, switches to single column on smaller screens -->
+  <div class="battle-container grid grid-cols-1 md:grid-cols-5 gap-4 items-center text-center" id="car-container">
+
+    <!-- Car 1 Card (takes 2 out of 5 columns) -->
+    <div class="card bg-white p-6 rounded-lg shadow-md col-span-5 md:col-span-2 mx-2 text-center">
       <h2 class="text-2xl font-semibold"><%= @car1.brand %> <%= @car1.model %></h2>
       <img src="<%= @car1.image_url %>" alt="<%= @car1.brand %> <%= @car1.model %>" class="w-full h-64 object-cover rounded-lg mb-4">
       <p class="text-lg text-gray-600 mb-2"><strong>Year:</strong> <%= @car1.year %></p>
       <p class="text-lg text-gray-600 mb-2"><strong>Fuel:</strong> <%= @car1.fuel %></p>
       
+      <!-- Vote Count -->
       <p class="text-lg text-gray-600 mb-2">
         <strong>Vote Count:</strong> 
         <span id="vote-count-<%= @car1.id %>"><%= @car1.votes_count || 0 %></span>
@@ -17,14 +20,17 @@
       <%= button_to "Vote for This Car", vote_battle_battles_path(@car1.id), method: :post, remote: true, class: "vote-btn bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition-all mt-4", data: { car_id: @car1.id } %>
     </div>
 
-    <div class="w-1/6 mx-2 text-center text-3xl font-bold">VS</div>
+    <!-- VS Text (takes 1 out of 5 columns) -->
+    <div class="vs-text text-3xl font-bold mx-auto col-span-5 md:col-span-1 md:py-6">VS</div>
 
-    <div class="card bg-white p-6 rounded-lg shadow-md w-1/2 mx-2 text-center">
+    <!-- Car 2 Card (takes 2 out of 5 columns) -->
+    <div class="card bg-white p-6 rounded-lg shadow-md col-span-5 md:col-span-2 mx-2 text-center">
       <h2 class="text-2xl font-semibold"><%= @car2.brand %> <%= @car2.model %></h2>
       <img src="<%= @car2.image_url %>" alt="<%= @car2.brand %> <%= @car2.model %>" class="w-full h-64 object-cover rounded-lg mb-4">
       <p class="text-lg text-gray-600 mb-2"><strong>Year:</strong> <%= @car2.year %></p>
       <p class="text-lg text-gray-600 mb-2"><strong>Fuel:</strong> <%= @car2.fuel %></p>
       
+      <!-- Vote Count -->
       <p class="text-lg text-gray-600 mb-2">
         <strong>Vote Count:</strong> 
         <span id="vote-count-<%= @car2.id %>"><%= @car2.votes_count || 0 %></span>
