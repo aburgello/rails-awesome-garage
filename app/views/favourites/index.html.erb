@@ -1,7 +1,7 @@
-<ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 m-8">
+<ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 m-8">
   <% if @favourites.present? && @favourites.any? %>
     <% @favourites.each do |favourite| %>
-      <li id="favourite_<%= favourite.id %>" class="relative bg-white shadow rounded-lg p-4 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
+      <li id="favourite_<%= favourite.id %>" class="card-fav relative bg-white shadow rounded-lg p-4  hover:shadow-xl hover:bg-gray-100">
         
         <%= button_to 'X', car_favourite_path(favourite.car, favourite), 
     method: :delete, 
