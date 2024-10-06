@@ -4,7 +4,7 @@
       <%= @car.brand %> <%= @car.model %> (Year: <%= @car.year %>)
     </h1>
     
-    <%= image_tag @car.image_url, alt: "#{@car.brand} #{@car.model}", class: "w-full h-64 object-cover rounded-lg mb-4 cursor-pointer" %>
+    <%= image_tag @car.image_url, alt: "#{@car.brand} #{@car.model}", class: "w-full h-64 object-cover rounded-lg mb-4 cursor-pointer show-car" %>
 
     <h2 class="text-2xl font-semibold mt-4">Current owner:</h2>
     <p class="text-2xl text-blue-900 mb-2"><%= @car.owner.nickname %></p>

@@ -29,6 +29,7 @@ document.querySelectorAll('.h-64').forEach(function(element) {
     if (element.classList.contains('h-64')) {
         element.classList.remove('h-64');
         element.classList.add('h-auto');
+        
     } else {
         element.classList.remove('h-auto');
         element.classList.add('h-64');
@@ -36,7 +37,25 @@ document.querySelectorAll('.h-64').forEach(function(element) {
     });
 });
 });
-  
+
+document.addEventListener('turbo:load', function() {
+    document.querySelectorAll('.show-car').forEach(function(element) {
+        element.addEventListener('click', function(event) {
+        if (element.classList.contains('show-car')) {
+            element.classList.remove('show-car');
+            element.classList.remove('h-64');
+            element.classList.add('h-auto');
+            
+        } else {
+            element.classList.remove('h-auto');
+            element.classList.add('show-car');
+            element.classList.add('h-64');
+
+        }
+        });
+    });
+    }); 
+
 document.addEventListener("turbo:load", function() {
     const stars = document.querySelectorAll('input[name="review[rating]"]');
 

@@ -198,6 +198,24 @@ nav img:hover {
 .logo-img{
   width: 60px;
 }
+
+#leaderboard {
+  border: 2px solid #e2e8f0; /* Light border around the leaderboard */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Padding inside the leaderboard */
+  background-color: #f7fafc; /* Light background color */
+  position: relative;
+}
+
+#leaderboard h3 {
+  font-size: 1.25rem; /* Increase heading size */
+  margin-bottom: 0.5rem; /* Space below the heading */
+}
+
+#leaderboard img {
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2)); /* Add a subtle shadow to the icons */
+}
+
 @media (max-width: 640px) {
   nav span{
     display: none;
@@ -219,7 +237,10 @@ nav img:hover {
     margin-top: -15px;
   }
   .h-64 {
-    height: 8rem;
+    height: auto;
+}
+.show-car {
+  height: 8rem;
 }
 .logo-img{
   width: 50px;
