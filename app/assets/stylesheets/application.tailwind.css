@@ -215,7 +215,10 @@ nav img:hover {
 #leaderboard img {
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2)); /* Add a subtle shadow to the icons */
 }
-
+#leaders:hover {
+  height: 20rem;
+  transition: all 0.3s ease;
+}
 @media (max-width: 640px) {
   nav span{
     display: none;
