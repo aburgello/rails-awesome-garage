@@ -211,8 +211,11 @@ nav img:hover {
   font-size: 1.25rem; /* Increase heading size */
   margin-bottom: 0.5rem; /* Space below the heading */
 }
+#battle-car-img {
+  height: 10rem;
+}
 
-.h-40:hover {
+#battle-car-img:hover {
   height: 20rem;
   transition: all 0.3s ease;
 }
