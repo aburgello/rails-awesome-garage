@@ -33,7 +33,6 @@
         <strong>Votes:</strong> 
         <span id="vote-count-<%= @car2.id %>"><%= @car2.votes_count || 0 %></span>
       </p>
-      
       <%= button_to "Vote for This Car", vote_battle_battles_path(@car2.id), method: :post, remote: true, class: "vote-btn bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600 transition-all mt-4", data: { car_id: @car2.id } %>
     </div>
   

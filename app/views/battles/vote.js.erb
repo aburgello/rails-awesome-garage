@@ -1,4 +1,12 @@
 // Update the vote count for the car
+
+Swal.fire({
+  title: 'Vote Recorded!',
+  text: "You've voted for <%= @car.brand %> <%= @car.model %>.",
+  icon: 'success',
+  confirmButtonText: 'Cool!',
+});
+
 if (typeof voteCountElement == 'undefined') {
 let voteCountElement = document.querySelector(`#vote-count-<%= @car.id %>`);
 if (voteCountElement) {
@@ -12,9 +20,7 @@ else {
 setTimeout(() => {
   loadNewCars();
     updateLeaderboard();
-
-}, 100);
-
+}, );
 
 
 function loadNewCars() {
@@ -41,7 +47,7 @@ function loadNewCars() {
         <span id="vote-count-<%= @car1.id %>"><%= @car1.votes_count || 0 %></span>
       </p>
       
-      <%= button_to "Vote for This Car", vote_battle_battles_path(@car1.id), method: :post, remote: true, class: "vote-btn bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition-all mt-4", data: { car_id: @car1.id } %>
+      <%= button_to "Vote for This Car", vote_battle_battles_path(@car1.id), method: :post, remote: true, class: "vote-btn bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600 transition-all mt-4", data: { car_id: @car1.id } %>
     </div>
       `;
       
@@ -57,7 +63,7 @@ function loadNewCars() {
         <span id="vote-count-<%= @car2.id %>"><%= @car2.votes_count || 0 %></span>
       </p>
       
-      <%= button_to "Vote for This Car", vote_battle_battles_path(@car2.id), method: :post, remote: true, class: "vote-btn bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition-all mt-4", data: { car_id: @car2.id } %>
+      <%= button_to "Vote for This Car", vote_battle_battles_path(@car2.id), method: :post, remote: true, class: "vote-btn bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600 transition-all mt-4", data: { car_id: @car2.id } %>
     </div>
       `;
       

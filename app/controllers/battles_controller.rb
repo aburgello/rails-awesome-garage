@@ -2,7 +2,6 @@ class BattlesController < ApplicationController
   def new_cars
     car1 = Car.order("RANDOM()").first
     car2 = Car.order("RANDOM()").where.not(id: car1.id).first
-
     render json: {
       car1: {
         id: car1.id,
