@@ -23,20 +23,7 @@ document.addEventListener('turbo:load',function() {
     }
 });
 
-document.addEventListener('turbo:load', function() {
-document.querySelectorAll('.h-64').forEach(function(element) {
-    element.addEventListener('click', function(event) {
-    if (element.classList.contains('h-64')) {
-        element.classList.remove('h-64');
-        element.classList.add('h-auto');
-        
-    } else {
-        element.classList.remove('h-auto');
-        element.classList.add('h-64');
-    }
-    });
-});
-});
+
 
 document.addEventListener('turbo:load', function() {
     document.querySelectorAll('.show-car').forEach(function(element) {
